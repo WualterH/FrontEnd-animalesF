@@ -1,0 +1,49 @@
+<div class="animate__animated animate__fadeInRight">
+  <br />
+
+  <div class="col">
+    <mat-card class="mat_card_usuarios">
+      <h1 class>Modulo de Control de Usuarios</h1>
+    </mat-card>
+  </div>
+
+  <br />
+
+  <mat-card class="mat-elevation-z5 mat_card_usuarios_content">
+    <mat-tab-group class="card_group_usuarios">
+      <mat-tab label="Usuarios">
+        <br />
+        <h3 style="margin-left: 15px">Lista de usuarios</h3>
+        <app-agregar-usuarios
+          (onDebounce)="actualizarTabla($event)"
+          [Roles_list]="Roles_list_main"
+        ></app-agregar-usuarios>
+        <br />
+        <div class="col-md-12" style="align-items: center">
+          <app-lista-usuarios
+            (onDebounce)="actualizarTabla($event)"
+            [Usuarios_list]="Usuarios_list_main"
+            [Roles_list]="Roles_list_main"
+          ></app-lista-usuarios>
+        </div>
+        <br /><br /><br />
+      </mat-tab>
+      <mat-tab label="Asignar Permisos">
+        <hr />
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta ipsa
+          dolorum nihil deleniti tempore laudantium labore, recusandae
+          asperiores, quasi dolor autem. Ea, sint doloribus. Nemo libero
+          voluptates voluptatum optio doloribus! Lorem ipsum dolor sit amet,
+          consectetur adipisicing elit. Eligendi perspiciatis dicta non ab
+          excepturi aliquid perferendis? Repellat consectetur soluta reiciendis
+          dolores cum, assumenda eius minus sit tempora, debitis, iure illum.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores nihil
+          accusamus blanditiis ut itaque magni sapiente tempore dolor aut
+          architecto, accusantium facilis, nostrum ipsum nobis, esse vel
+          possimus! Veniam, consequuntur.
+        </p>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

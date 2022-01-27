@@ -1,0 +1,98 @@
+<div>
+  <button mat-button class="button_color" (click)="open(content)">
+    <span style="color: white">Agregar Usuario </span>
+    <mat-icon style="color: white">add</mat-icon>
+  </button>
+</div>
+
+<ng-template style="border: 0px; z-index: 100" #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar Usuario</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nombre Completo</mat-label>
+          <input
+            type="text"
+            maxlength="50"
+            minlength="3"
+            matInput
+            name="usuario.nombre_usuario"
+            [(ngModel)]="usuario.nombre_usuario"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            type="text"
+            maxlength="50"
+            minlength="10"
+            matInput
+            name="usuario.email_usuario"
+            [(ngModel)]="usuario.email_usuario"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            maxlength="50"
+            minlength="6"
+            matInput
+            name="usuario.clave_usuario"
+            [(ngModel)]="usuario.clave_usuario"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Estado Usuario</mat-label>
+          <mat-select
+            name="usuario.estado_usuario"
+            [(ngModel)]="usuario.estado_usuario"
+          >
+            <mat-option value="true">Activo</mat-option>
+            <mat-option value="false">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Rol</mat-label>
+          <mat-select name="usuario.id_rol" [(ngModel)]="usuario.id_rol">
+            <mat-option *ngFor="let rol of Roles_list" value="{{ rol.id }}">
+              {{ rol.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">Cancelar</span>
+    </button>
+    <button type="button" class="btn btn-outline-success" (click)="agregar()">
+      Guardar
+    </button>
+  </div>
+</ng-template>

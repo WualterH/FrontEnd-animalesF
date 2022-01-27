@@ -1,0 +1,181 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre_usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.nombre_usuario | uppercase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email_usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.email_usuario | uppercase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.rolUsuario.nombre | uppercase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado_usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.estado_usuario == true" style="color: green"
+          >ACTIVO</span
+        >
+        <span *ngIf="element.estado_usuario == false" style="color: red"
+          >INACTIVO</span
+        >
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          *ngIf="element.estado_usuario == false"
+          (click)="
+            Desabilitar_Habilitar_Usuario(element.id, !element.estado_usuario)
+          "
+          mat-button
+          style="background-color: red"
+        >
+          <mat-icon style="color: white">block</mat-icon>
+        </button>
+        <button
+          *ngIf="element.estado_usuario == true"
+          (click)="
+            Desabilitar_Habilitar_Usuario(element.id, !element.estado_usuario)
+          "
+          mat-button
+          style="background-color: green"
+        >
+          <mat-icon style="color: white">done</mat-icon>
+        </button>
+        &nbsp;
+        <button
+          (click)="open(content, element.id)"
+          mat-button
+          style="background-color: #2844a4"
+        >
+          <mat-icon style="color: white">create</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Seleccionar pagina de usuarios."
+  >
+  </mat-paginator>
+</div>
+
+<ng-template style="border: 0px; z-index: 100" #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Editar Usuario</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nombre Completo</mat-label>
+          <input
+            type="text"
+            maxlength="50"
+            minlength="3"
+            matInput
+            name="usuario.nombre_usuario"
+            [(ngModel)]="usuario_update.nombre_usuario"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            type="text"
+            maxlength="50"
+            minlength="10"
+            matInput
+            name="usuario.email_usuario"
+            [(ngModel)]="usuario_update.email_usuario"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            maxlength="50"
+            minlength="6"
+            matInput
+            name="usuario.clave_usuario"
+            [(ngModel)]="usuario_update.clave_usuario"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Rol</mat-label>
+          <mat-select name="usuario.id_rol" [(ngModel)]="usuario_update.id_rol">
+            <mat-option *ngFor="let rol of Roles_list" value="{{ rol.id }}">
+              {{ rol.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Estado Usuario</mat-label>
+          <mat-select
+            name="usuario.estado_usuario"
+            [(ngModel)]="usuario_update.estado_usuario"
+          >
+            <mat-option value="true">Activo</mat-option>
+            <mat-option value="false">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">Cancelar</span>
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="actualizar_usuario()"
+    >
+      editar
+    </button>
+  </div>
+</ng-template>

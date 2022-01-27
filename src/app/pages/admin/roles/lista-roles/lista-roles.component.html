@@ -1,0 +1,140 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+      <td class="padding-table" mat-cell *matCellDef="let element">
+        {{ element.nombre | uppercase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
+      <td class="padding-table" mat-cell *matCellDef="let element">
+        {{ element.descripcion | uppercase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+      <td class="padding-table" mat-cell *matCellDef="let element">
+        <span *ngIf="element.estado == true" style="color: green">ACTIVO</span>
+        <span *ngIf="element.estado == false" style="color: red">INACTIVO</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+      <td class="padding-table" mat-cell *matCellDef="let element">
+        <button
+          *ngIf="element.estado == false"
+          (click)="Desabilitar_Habilitar_Rol(element.id, !element.estado)"
+          mat-button
+          style="background-color: red"
+        >
+          <mat-icon style="color: white">block</mat-icon>
+        </button>
+
+        <button
+          *ngIf="element.estado == true"
+          (click)="Desabilitar_Habilitar_Rol(element.id, !element.estado)"
+          mat-button
+          style="background-color: green"
+        >
+          <mat-icon style="color: white">done</mat-icon>
+        </button>
+        &nbsp;
+        <button
+          (click)="open(content, element.id)"
+          mat-button
+          style="background-color: #2844a4"
+        >
+          <mat-icon style="color: white">create</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Seleccionar pagina de usuarios."
+  >
+  </mat-paginator>
+</div>
+
+<ng-template style="border: 0px; z-index: 100" #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Actualizar rol</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nombre de rol</mat-label>
+          <input
+            type="text"
+            maxlength="50"
+            minlength="3"
+            matInput
+            name="roles.nombre"
+            [(ngModel)]="Update_roles.nombre"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Descripcion del rol</mat-label>
+          <textarea
+            matInput
+            maxlength="200"
+            minlength="15"
+            name="roles.descripcion"
+            [(ngModel)]="Update_roles.descripcion"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Estado Rol</mat-label>
+          <mat-select name="roles.estado" [(ngModel)]="Update_roles.estado">
+            <mat-option value="true">Activo</mat-option>
+            <mat-option value="false">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">Cancelar</span>
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="Actualizar_Rol()"
+    >
+      Actualizar
+    </button>
+  </div>
+</ng-template>

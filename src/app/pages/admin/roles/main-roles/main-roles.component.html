@@ -1,0 +1,18 @@
+<div class="animate__animated animate__fadeInRight">
+  <br />
+  <div class="col">
+    <mat-card class="mat_card_roles">
+      <h1 class>Mantenedor de roles</h1>
+    </mat-card>
+  </div>
+  <br />
+  <mat-card class="mat-elevation-z5 mat_card_roles_content">
+    <app-agregar-rol (onDebounce)="actualizarTabla($event)"></app-agregar-rol>
+    <br />
+    <app-lista-roles
+      (onDebounce)="actualizarTabla($event)"
+      [Roles_list]="roles"
+    ></app-lista-roles>
+  </mat-card>
+  <hr />
+</div>

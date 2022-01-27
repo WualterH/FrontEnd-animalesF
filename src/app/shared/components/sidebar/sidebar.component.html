@@ -1,0 +1,51 @@
+<div *ngIf="isAdmin == 'ADMIN'; else trabajador">
+  <mat-selection-list #option_sidebar_edmin [multiple]="false">
+    <div *ngFor="let Option of typesOfOptionsAdmin">
+      <mat-list-option
+        class="relieve_mat_list"
+        (click)="RedirectFunction(Option)"
+      >
+        <span
+          >{{ Option.nombreItem
+          }}<mat-icon style="float: right; color: gray">{{
+            Option.icon
+          }}</mat-icon></span
+        >
+      </mat-list-option>
+    </div>
+  </mat-selection-list>
+
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel class="relieve_mat_list">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Mantenedores </mat-panel-title>
+        <mat-panel-description>
+          <mat-icon>settings</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-selection-list #option_sidebar_edmin [multiple]="false">
+        <div *ngFor="let Option of typesOfOptionsMantenedores">
+          <mat-list-option (click)="RedirectFunction(Option)">
+            <span
+              >{{ Option.nombreItem
+              }}<mat-icon style="float: right; color: gray">{{
+                Option.icon
+              }}</mat-icon></span
+            >
+          </mat-list-option>
+        </div>
+      </mat-selection-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<ng-template #trabajador>
+  <mat-selection-list #option_sidebar_employed [multiple]="false">
+    <div *ngFor="let Option_ of typesOfOptionsEmployed">
+      <mat-list-option>
+        {{ Option_.nombreItem }}
+      </mat-list-option>
+    </div>
+  </mat-selection-list>
+</ng-template>

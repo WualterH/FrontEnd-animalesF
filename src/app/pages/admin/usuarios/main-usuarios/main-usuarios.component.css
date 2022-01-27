@@ -1,0 +1,16 @@
+.tabs_group_usuarios {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.mat_card_usuarios {
+  padding: "auto";
+  background-color: whitesmoke;
+}
+.mat_card_usuarios_content {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.card_group_usuarios {
+  height: 100%;
+}

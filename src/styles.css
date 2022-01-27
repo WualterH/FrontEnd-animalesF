@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+  z-index: 99999 !important;
+}
+
+.button_color_primary {
+  background-color: #2844a4;
+  margin-left: 15px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+mat-cell:nth-child(1),
+mat-header-cell:nth-child(1) {
+  flex: 0 0 30%;
+}
+
+mat-cell:nth-child(5),
+mat-header-cell:nth-child(5) {
+  flex: 0 0 10%;
+}
+
+.tabs_group_trabajadores {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.mat_card_general {
+  padding: "auto";
+  background-color: whitesmoke;
+}
+.mat_card_general_content {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.card_group_general {
+  height: 100%;
+}
+
+@import "~animate.css/animate.min";

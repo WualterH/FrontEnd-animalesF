@@ -1,0 +1,71 @@
+<div>
+  <button mat-button class="button_color_primary" (click)="open(content)">
+    <span style="color: white">Agregar Rol </span>
+    <mat-icon style="color: white">add</mat-icon>
+  </button>
+</div>
+
+<ng-template style="border: 0px; z-index: 100" #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar nuevo rol</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nombre de rol</mat-label>
+          <input
+            type="text"
+            maxlength="50"
+            minlength="3"
+            matInput
+            name="roles.nombre"
+            [(ngModel)]="roles.nombre"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Descripcion del rol</mat-label>
+          <textarea
+            matInput
+            maxlength="200"
+            minlength="15"
+            name="roles.descripcion"
+            [(ngModel)]="roles.descripcion"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Estado Rol</mat-label>
+          <mat-select name="roles.estado" [(ngModel)]="roles.estado">
+            <mat-option value="true">Activo</mat-option>
+            <mat-option value="false">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">Cancelar</span>
+    </button>
+    <button type="button" class="btn btn-outline-success" (click)="agregar()">
+      Guardar
+    </button>
+  </div>
+</ng-template>

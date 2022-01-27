@@ -1,0 +1,9 @@
+.mat_card_roles {
+  padding: "auto";
+  background-color: whitesmoke;
+}
+
+.mat_card_roles_content {
+  margin-left: 15px;
+  margin-right: 15px;
+}

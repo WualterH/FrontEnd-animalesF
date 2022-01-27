@@ -1,0 +1,63 @@
+<div>
+  <button mat-button class="button_color_primary" (click)="open(content)">
+    <span style="color: white">Agregar Permiso </span>
+    <mat-icon style="color: white">add</mat-icon>
+  </button>
+</div>
+
+<ng-template style="border: 0px; z-index: 100" #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar Permiso</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nombre Permiso</mat-label>
+          <input
+            type="text"
+            maxlength="150"
+            minlength="10"
+            matInput
+            name="permisos.nombre"
+            [(ngModel)]="permisos.nombre"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Descripcion</mat-label>
+          <textarea
+            type="textarea"
+            maxlength="50"
+            minlength="10"
+            matInput
+            name="permisos.descripcion"
+            [(ngModel)]="permisos.descripcion"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">Cancelar</span>
+    </button>
+    <button type="button" class="btn btn-outline-success" (click)="agregar()">
+      Guardar
+    </button>
+  </div>
+</ng-template>

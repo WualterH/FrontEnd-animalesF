@@ -1,0 +1,15 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="push">
+    <mat-toolbar class="toolbar_header">
+      <span style="color: white">Menu </span>
+      <mat-icon class="color_icon">home</mat-icon>
+    </mat-toolbar>
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
+    <router-outlet></router-outlet>
+    <br />
+    <!-- <app-footer></app-footer> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

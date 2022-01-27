@@ -1,0 +1,22 @@
+<div class="animate__animated animate__fadeInRight">
+  <br />
+
+  <div class="col">
+    <mat-card class="mat_card_general">
+      <h1 class>Modulo de Permisos</h1>
+    </mat-card>
+  </div>
+
+  <br />
+  <mat-card class="mat-elevation-z5 mat_card_general_content">
+    <app-agregar-permisos
+      (onDebounce)="actualizarTabla($event)"
+    ></app-agregar-permisos>
+    <br />
+    <app-lista-permisos
+      (onDebounce)="actualizarTabla($event)"
+      [Permisos_List]="permisos"
+    ></app-lista-permisos>
+  </mat-card>
+  <hr />
+</div>

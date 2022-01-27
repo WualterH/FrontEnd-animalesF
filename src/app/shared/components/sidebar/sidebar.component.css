@@ -1,0 +1,18 @@
+mat-list-option[aria-selected="true"] {
+  background: whitesmoke;
+  outline: none;
+}
+
+mat-list-option {
+  width: 100%;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-radius: 3px;
+}
+
+.relieve_mat_list {
+  margin-top: 8px;
+  position: relative;
+  -webkit-box-shadow: -1px 2px 9px -1px rgba(107, 107, 107, 0.86);
+  box-shadow: -1px 2px 9px -1px rgba(107, 107, 107, 0.86);
+}
