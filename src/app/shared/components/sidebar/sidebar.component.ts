@@ -36,7 +36,9 @@ export class SidebarComponent implements OnInit {
 
   typesOfOptionsMantenedores: MenuInterface[] = [
     {nombreItem:'Roles',icon:'group_add',route:"main-roles"},
-    {nombreItem:'Permisos',icon:'compare_arrows',route:"main-permisos"}
+    {nombreItem:'Permisos',icon:'compare_arrows',route:"main-permisos"},
+    {nombreItem: 'Encuesta', icon:'compare_arrows', route: "main-encuestas"},
+    {nombreItem: 'Encuestador', icon:'compare_arrows', route: "main-encuestador"}
   ];
 
 

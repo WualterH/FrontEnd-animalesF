@@ -21,7 +21,7 @@ export class RolesService {
 
   GetAll_roles(): Observable<RequestResponseGetAllRoles> | any {
     return this.http
-    .get<RequestResponseGetAllRoles >(`${environment.API}/rrhh/rol/`)
+    .get<RequestResponseGetAllRoles >(`${environment.API}/animalesF/rol/`)
     .pipe(
       map((res:RequestResponseGetAllRoles) =>{
         return res.data;
@@ -33,7 +33,7 @@ export class RolesService {
 
   Create_roles(roles:Roles): Observable<RequestResponse> {
     return this.http
-    .post<RequestResponse >(`${environment.API}/rrhh/rol/crear`,roles)
+    .post<RequestResponse >(`${environment.API}/animalesF/rol/crear`,roles)
     .pipe(
       map((res:RequestResponse) =>{
         return res;
@@ -44,7 +44,7 @@ export class RolesService {
 
   Desabilitar_Habilitar_rol(rol:any): Observable<RequestResponseDesabilitar>  {
     return this.http
-    .put<RequestResponseDesabilitar >(`${environment.API}/rrhh/rol/actualizar/${rol.id}`,rol)
+    .put<RequestResponseDesabilitar >(`${environment.API}/animalesF/rol/actualizar/${rol.id}`,rol)
     .pipe(
       map((res:RequestResponseDesabilitar) =>{
         return res;
@@ -55,7 +55,7 @@ export class RolesService {
 
     Actualizar_rol(rol:any): Observable<RequestResponseActualizar>  {
     return this.http
-    .put<RequestResponseActualizar >(`${environment.API}/rrhh/rol/actualizar/${rol.id}`,rol)
+    .put<RequestResponseActualizar >(`${environment.API}/animalesF/rol/actualizar/${rol.id}`,rol)
     .pipe(
       map((res:RequestResponseActualizar) =>{
         return res;

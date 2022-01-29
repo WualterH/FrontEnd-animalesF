@@ -1,0 +1,91 @@
+<div>
+    <button mat-button class="button_color_primary" (click)="open(content)">
+      <span style="color: white">Agregar Encuestador </span>
+      <mat-icon style="color: white">add</mat-icon>
+    </button>
+  </div>
+  
+  <ng-template style="border: 0px; z-index: 100" #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Agregar una nueva encuesta</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>    
+    <div class="modal-body">
+      <form>
+        <div class="row">
+        <div class="col">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nombre del encuestado</mat-label>
+            <input
+              type="text"
+              maxlength="50"
+              minlength="3"
+              matInput
+              name="encuestas.nombre"
+              [(ngModel)]="encuestas.nombre"
+            />
+          </mat-form-field>
+        </div>                
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Apeliddo del encuestado</mat-label>
+              <input
+                type="text"
+                maxlength="50"
+                minlength="3"
+                matInput
+                name="encuestas.apellido"
+                [(ngModel)]="encuestas.apellido"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Animal favorito</mat-label>
+                  <input
+                    type="text"
+                    maxlength="50"
+                    minlength="3"
+                    matInput
+                    name="encuestas.animal"
+                    [(ngModel)]="encuestas.animal"
+                  />
+                </mat-form-field>
+              </div>              
+              <div class="col">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Encuestador</mat-label>
+                  <mat-select name="encuestas.id_encuestador" [(ngModel)]="encuestas.id_encuestador">
+                    <mat-option *ngFor="let encuestador of list_encuestadores" value="{{ encuestador.id }}">
+                      {{ encuestador.nombre }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+        </div>                 
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">Cancelar</span>
+      </button>
+      <button type="button" class="btn btn-outline-success" (click)="agregar()">
+        Guardar
+      </button>
+    </div>
+  </ng-template>
+  

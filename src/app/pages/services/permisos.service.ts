@@ -20,7 +20,7 @@ export class PermisoService {
 
   GetAll_permisos(): Observable<RequestResponseGetAllPermiso> {
     return this.http
-    .get<RequestResponseGetAllPermiso >(`${environment.API}/rrhh/permiso/`)
+    .get<RequestResponseGetAllPermiso >(`${environment.API}/animalesF/permiso/`)
     .pipe(
       map((res:RequestResponseGetAllPermiso) =>{
         return res;
@@ -32,7 +32,7 @@ export class PermisoService {
 
   Create_permiso(permiso:Permiso): Observable<RequestResponse> {
     return this.http
-    .post<RequestResponse >(`${environment.API}/rrhh/permiso/crear`,permiso)
+    .post<RequestResponse >(`${environment.API}/animalesF/permiso/crear`,permiso)
     .pipe(
       map((res:RequestResponse) =>{
         return res;

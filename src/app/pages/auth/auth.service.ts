@@ -40,7 +40,7 @@ export class AuthService {
 
   login(authData:User): Observable<UserResponse> {
     return this.http
-    .post<UserResponse >(`${environment.API}/rrhh/usuario/login`,authData)
+    .post<UserResponse >(`${environment.API}/animalesF/usuario/login`,authData)
     .pipe(
       map((res:UserResponse) =>{
 

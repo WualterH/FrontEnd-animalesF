@@ -7,6 +7,8 @@ import { MainUsuariosComponent } from './usuarios/main-usuarios/main-usuarios.co
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { MainPermisosComponent } from './permisos/main-permisos/main-permisos.component';
 import { PermisosModule } from './permisos/permisos.module';
+import { MainEncuestaComponent } from './encuestas/main-encuesta/main-encuesta.component';
+import { MainEncuestadorComponent } from './encuestador/main-encuestador/main-encuestador.component';
 
 const routes: Routes = 
 [
@@ -14,6 +16,8 @@ const routes: Routes =
   { path: 'main-usuarios', component: MainUsuariosComponent },
   { path: 'main-roles', component: MainRolesComponent },
   { path: 'main-permisos', component: MainPermisosComponent },
+  { path: 'main-encuestas', component: MainEncuestaComponent},
+  { path: 'main-encuestador', component: MainEncuestadorComponent}
 ];
 
 

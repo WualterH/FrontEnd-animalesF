@@ -1,0 +1,25 @@
+<div class="animate__animated animate__fadeInRight">
+    <br />
+  
+    <div class="col">
+      <mat-card class="mat_card_general">
+        <h1 class>Modulo de Encuestas</h1>
+      </mat-card>
+    </div>
+  
+    <br />
+    <mat-card class="mat-elevation-z5 mat_card_general_content">
+      <app-agregar-encuesta
+        (onDebounce)="actualizarTabla($event)"
+        [list_encuestadores]="list_encuestadores_main"
+      ></app-agregar-encuesta>
+      <br />
+      <app-lista-encuesta
+        (onDebounce)="actualizarTabla($event)"
+        [list_encuestadores]="list_encuestadores_main"
+        [encuestas_List]="encuestas"
+      ></app-lista-encuesta>
+    </mat-card>
+    <hr />
+  </div>
+  

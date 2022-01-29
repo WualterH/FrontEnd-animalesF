@@ -1,0 +1,154 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre del encuestado</th>
+        <td class="padding-table" mat-cell *matCellDef="let element">
+          {{ element.nombre | uppercase }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido</th>
+        <td class="padding-table" mat-cell *matCellDef="let element">
+          {{ element.apellido | uppercase }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="animal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Animal favorito</th>
+        <td class="padding-table" mat-cell *matCellDef="let element">
+          {{ element.animal | uppercase }}
+        </td>
+      </ng-container>
+          
+      
+      <ng-container matColumnDef="encuestador">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>encuestador</th>
+        <td class="padding-table" mat-cell *matCellDef="let element">
+          {{ element.encuestadores.nombre| uppercase }}          
+        </td>
+      </ng-container>
+                
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+        <td class="padding-table" mat-cell *matCellDef="let element">
+          <button 
+            (click)="open(content, element.id)"
+            mat-button class="button_color_primary">
+            <mat-icon style="color: white">edit</mat-icon>
+          </button>
+          &nbsp;
+          <button 
+            (click)="Eliminar_Encuesta(content, element.id)"
+            mat-button class="button_color_primary" style="background-color:red">
+            <mat-icon style="color: white">delete</mat-icon>
+          </button>          
+        </td>        
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Seleccionar pagina de usuarios."
+    >
+    </mat-paginator>
+  </div>
+  
+  <ng-template style="border: 0px; z-index: 100" #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Actualizar Encuesta</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="row">
+        <div class="col">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nombre del encuestador</mat-label>
+            <input
+              type="text"
+              maxlength="50"
+              minlength="3"
+              matInput
+              name="encuestas.nombre"
+              [(ngModel)]="update_encuestas.nombre"
+            />
+          </mat-form-field>
+        </div>                        
+        <div class="col">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input
+              type="text"
+              maxlength="50"
+              minlength="3"
+              matInput
+              name="encuestas.apellido"
+              [(ngModel)]="update_encuestas.apellido"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Animal favorito</mat-label>
+            <input
+              type="text"
+              maxlength="50"
+              minlength="3"
+              matInput
+              name="encuestas.animal"
+              [(ngModel)]="update_encuestas.animal"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">      
+      <div class="col">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Encuestador</mat-label>
+          <mat-select name="update_encuestas.id_encuestador" [(ngModel)]="update_encuestas.id_encuestador">
+            <mat-option *ngFor="let encuestador of list_encuestadores" value="{{ encuestador.id }}">
+              {{ encuestador.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">Cancelar</span>
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        (click)="Actualizar_Encuesta()"
+      >
+        Actualizar
+      </button>
+    </div>
+  </ng-template>

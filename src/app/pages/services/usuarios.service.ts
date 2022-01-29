@@ -18,7 +18,7 @@ export class UsuariosService {
 
   Create_usuario(user:Usuario): Observable<RequestResponse> {
     return this.http
-    .post<RequestResponse >(`${environment.API}/rrhh/usuario/crear`,user)
+    .post<RequestResponse >(`${environment.API}/animalesF/usuario/crear`,user)
     .pipe(
       map((res:RequestResponse) =>{
 
@@ -31,7 +31,7 @@ export class UsuariosService {
 
   GetAll_usuario(): Observable<RequestResponseGetAll> | any {
     return this.http
-    .get<RequestResponseGetAll >(`${environment.API}/rrhh/usuario/`)
+    .get<RequestResponseGetAll >(`${environment.API}/animalesF/usuario/`)
     .pipe(
       map((res:RequestResponseGetAll) =>{
 
@@ -44,7 +44,7 @@ export class UsuariosService {
 
   Desabilitar_usuario(user:any): Observable<RequestResponseDesabilitar>  {
     return this.http
-    .put<RequestResponseDesabilitar >(`${environment.API}/rrhh/usuario/${user.id}`,user)
+    .put<RequestResponseDesabilitar >(`${environment.API}/animalesF/usuario/${user.id}`,user)
     .pipe(
       map((res:RequestResponseDesabilitar) =>{
         return res;
@@ -56,7 +56,7 @@ export class UsuariosService {
   
   Actualizar_usuario(user:any): Observable<RequestResponseDesabilitar>  {
     return this.http
-    .put<RequestResponseDesabilitar >(`${environment.API}/rrhh/usuario/${user.id}`,user)
+    .put<RequestResponseDesabilitar >(`${environment.API}/animalesF/usuario/${user.id}`,user)
     .pipe(
       map((res:RequestResponseDesabilitar) =>{
         return res;

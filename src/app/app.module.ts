@@ -50,7 +50,7 @@ import { PermisosModule } from './pages/admin/permisos/permisos.module';
     FlexLayoutModule,
     NgbModule,
     RolesModule,
-    PermisosModule
+    PermisosModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorsTokenService, multi: true },
