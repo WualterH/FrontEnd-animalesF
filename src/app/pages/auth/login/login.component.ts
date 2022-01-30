@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit,OnDestroy {
   
 
   
-  loginForm= this.Fb.group({
-    email_usuario: ['', [Validators.required]],
+  loginForm= this.Fb.group({    
+    nombre_usuario: ['', [Validators.required]],
     clave_usuario:['', [Validators.required]],
   });
 
@@ -41,13 +41,9 @@ export class LoginComponent implements OnInit,OnDestroy {
 
 
   onLogin():void{
-    const formValue =this.loginForm.value;
-    const ValidarEmail=this.authService.esEmailValido(formValue.email_usuario)
-
-    if(!ValidarEmail){
-      this.alert.error_mail("Formato Email Invalido");
-      return;
-    }
+    const formValue =this.loginForm.value;    
+    const ValidarEmail=formValue.nombre_usuario
+    
 
     this.subscripcion.add(
       this.authService.login(formValue).subscribe((res)=>{
@@ -60,7 +56,7 @@ export class LoginComponent implements OnInit,OnDestroy {
           else if(tokeninfo.user.rol="TRABAJADOR"){
             this.router.navigate(['']);
           }
-          console.log("Bienvenido al mejor sistema del GrupoFirma");
+          console.log("Bienvenido a animales favoritos");
         }
       })
     );

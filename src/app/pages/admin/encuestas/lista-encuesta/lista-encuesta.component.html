@@ -8,14 +8,14 @@
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre del encuestado</th>
         <td class="padding-table" mat-cell *matCellDef="let element">
-          {{ element.nombre | uppercase }}
+          {{ element.encuestaPersona.personas.nombre | uppercase }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="apellido">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido</th>
         <td class="padding-table" mat-cell *matCellDef="let element">
-          {{ element.apellido | uppercase }}
+          {{ element.encuestaPersona.personas.apellido | uppercase }}
         </td>
       </ng-container>
 
@@ -25,15 +25,7 @@
           {{ element.animal | uppercase }}
         </td>
       </ng-container>
-          
-      
-      <ng-container matColumnDef="encuestador">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>encuestador</th>
-        <td class="padding-table" mat-cell *matCellDef="let element">
-          {{ element.encuestadores.nombre| uppercase }}          
-        </td>
-      </ng-container>
-                
+                                    
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
         <td class="padding-table" mat-cell *matCellDef="let element">
@@ -80,7 +72,7 @@
         <div class="row">
         <div class="col">
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Nombre del encuestador</mat-label>
+            <mat-label>Nombre del encuestado</mat-label>
             <input
               type="text"
               maxlength="50"
@@ -120,17 +112,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row">      
-      <div class="col">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Encuestador</mat-label>
-          <mat-select name="update_encuestas.id_encuestador" [(ngModel)]="update_encuestas.id_encuestador">
-            <mat-option *ngFor="let encuestador of list_encuestadores" value="{{ encuestador.id }}">
-              {{ encuestador.nombre }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+      <div class="row">            
       </div>
       </form>
     </div>

@@ -8,8 +8,6 @@ import { EncuestaService } from 'src/app/pages/services/encuestas.service';
 import { AlertHelper } from 'src/app/shared/components/helpers/alert.helpers';
 import { Encuesta } from 'src/app/shared/models/encuestas.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EncuestadorService } from 'src/app/pages/services/encuestador.service';
-import { Encuestador } from 'src/app/shared/models/encuestador.interface';
 
 @Component({
   selector: 'app-lista-encuesta',
@@ -18,8 +16,7 @@ import { Encuestador } from 'src/app/shared/models/encuestador.interface';
 })
 export class ListaEncuestaComponent implements OnInit {
 
-  @Input() encuestas_List!:Encuesta[];
-  @Input() list_encuestadores!:Encuestador[];
+  @Input() encuestas_List!:Encuesta[];  
   @Output() onDebounce: EventEmitter<boolean> = new EventEmitter();
   debouncer: Subject<boolean> = new Subject();
 
@@ -28,13 +25,12 @@ export class ListaEncuestaComponent implements OnInit {
     nombre:"",
     apellido:"",
     animal:"",
-    encuestador:0,    
-    id_encuestador:0,    
+    encuestador:"",    
+    idEncuestador:0,    
   };
 
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'animal', 'encuestador', 'actions'];
-  dataSource = new MatTableDataSource<Encuesta>(this.encuestas_List);
-  listEncuestador: Encuestador[] = [];
+  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'animal', 'actions'];
+  dataSource = new MatTableDataSource<Encuesta>(this.encuestas_List);  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -42,8 +38,7 @@ export class ListaEncuestaComponent implements OnInit {
   constructor(
     private alert:AlertHelper,
     private modalService: NgbModal,
-    private encuestaService: EncuestaService, 
-    private encuestadorService: EncuestadorService
+    private encuestaService: EncuestaService,     
   ) { }
 
   ngOnInit(): void {
@@ -51,8 +46,7 @@ export class ListaEncuestaComponent implements OnInit {
     .pipe(debounceTime(500))
     .subscribe( valor => {
       this.onDebounce.emit( valor );
-    });
-    this.getEncuestadores();
+    });    
 }
 
   ngOnChanges(changes: SimpleChanges) {    
@@ -64,14 +58,6 @@ export class ListaEncuestaComponent implements OnInit {
     }
   }
 }
-
-getEncuestadores(){
-  this.encuestadorService.GetAll_encuestadores().subscribe(
-    (res) => {        
-      this.listEncuestador = res.data;      
-    }
-  );
-  }
 
 
 
@@ -92,7 +78,7 @@ limpiar_encuestas(){
   this.update_encuestas.nombre="";
   this.update_encuestas.apellido="";
   this.update_encuestas.animal="";
-  this.update_encuestas.encuestador=0;  
+  this.update_encuestas.encuestador="";  
 }
 
 Actualizar_Encuesta(){  
@@ -100,7 +86,7 @@ Actualizar_Encuesta(){
     this.alert.error_small('Los campos no pueden estar vacios.')
     return
   }
-  this.update_encuestas.id_encuestador = this.update_encuestas.id_encuestador;
+  
   this.encuestaService.Actualizar_encuesta(this.update_encuestas).subscribe(res =>{
     if (res.success==true) {
           this.alert.success_small(res.msg!)

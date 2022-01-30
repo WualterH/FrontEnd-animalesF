@@ -4,8 +4,8 @@ export interface Encuesta {
     nombre: string,
     apellido: string,
     animal: string,
-    encuestador: number,
-    id_encuestador:number      
+    encuestador: string,
+    idEncuestador:number      
     createdAt?:any,
     updatedAt?:any,      
 }

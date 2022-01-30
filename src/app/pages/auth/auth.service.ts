@@ -38,15 +38,16 @@ export class AuthService {
     return this.role.asObservable();
   }
 
-  login(authData:User): Observable<UserResponse> {
+  login(authData:User): Observable<UserResponse> {    
     return this.http
     .post<UserResponse >(`${environment.API}/animalesF/usuario/login`,authData)
     .pipe(
       map((res:UserResponse) =>{
-
+        
         const tokeninfo=helper.decodeToken(res.token)
-        this.NombreUsuario=tokeninfo.user.nombre
-
+        this.NombreUsuario=tokeninfo.user.nombre        
+        localStorage.setItem("nombreUsuario", this.NombreUsuario)
+        localStorage.setItem("idEncuestador", tokeninfo.user.id)
         this.saveToken(res.token)
         this.loggedIn.next(true)
         this.role.next(tokeninfo.user.rol)

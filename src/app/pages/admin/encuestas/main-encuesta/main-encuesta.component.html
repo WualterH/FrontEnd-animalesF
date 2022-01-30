@@ -10,13 +10,11 @@
     <br />
     <mat-card class="mat-elevation-z5 mat_card_general_content">
       <app-agregar-encuesta
-        (onDebounce)="actualizarTabla($event)"
-        [list_encuestadores]="list_encuestadores_main"
+        (onDebounce)="actualizarTabla($event)"        
       ></app-agregar-encuesta>
       <br />
       <app-lista-encuesta
-        (onDebounce)="actualizarTabla($event)"
-        [list_encuestadores]="list_encuestadores_main"
+        (onDebounce)="actualizarTabla($event)"        
         [encuestas_List]="encuestas"
       ></app-lista-encuesta>
     </mat-card>

@@ -29,9 +29,9 @@ export class EncuestaService {
     );
   }
 
-  GetAll_encuestaE(): Observable<RequestResponseGetAllEncuesta> {
+  GetAll_encuesta(): Observable<RequestResponseGetAllEncuesta> {
     return this.http
-    .get<RequestResponseGetAllEncuesta >(`${environment.API}/animalesF/encuesta/encuestador`)
+    .get<RequestResponseGetAllEncuesta >(`${environment.API}/animalesF/encuesta/`)
     .pipe(
       map((res:RequestResponseGetAllEncuesta) =>{          
         return res;
@@ -40,8 +40,18 @@ export class EncuestaService {
     );
   }
 
+  GetAll_encuestaPorId(id:number): Observable<RequestResponseGetAllEncuesta> {
+    return this.http
+    .get<RequestResponseGetAllEncuesta >(`${environment.API}/animalesF/encuesta/${id}`)
+    .pipe(
+      map((res:RequestResponseGetAllEncuesta) =>{          
+        return res;
+      }),
+      catchError((err)=> this.handlerError(err))
+    );
+  }
 
-  Create_encuesta(encuesta:Encuesta): Observable<RequestResponse> {               
+  Create_encuesta(encuesta:Encuesta): Observable<RequestResponse> {                   
     return this.http
     .post<RequestResponse >(`${environment.API}/animalesF/encuesta/crear`,encuesta)
     .pipe(

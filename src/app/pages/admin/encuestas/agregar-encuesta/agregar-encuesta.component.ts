@@ -14,17 +14,19 @@ import { Encuesta } from 'src/app/shared/models/encuestas.interface';
 })
 export class AgregarEncuestaComponent implements OnInit {
 
-  @Output() onDebounce: EventEmitter<boolean> = new EventEmitter();
-  @Input() list_encuestadores!:Encuestador[];
+  @Output() onDebounce: EventEmitter<boolean> = new EventEmitter();  
   debouncer: Subject<boolean> = new Subject();  
 
   encuestas:Encuesta={
     nombre:"",
     apellido:"",
     animal: "",
-    encuestador: 0,
-    id_encuestador:0     
+    encuestador: "",
+    idEncuestador:0     
   }
+
+  nombreUsuario: any;
+  idEncuestador: any;
 
   constructor(
     private modalService: NgbModal,
@@ -33,6 +35,9 @@ export class AgregarEncuestaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.nombreUsuario = localStorage.getItem('nombreUsuario');    
+    this.idEncuestador = localStorage.getItem('idEncuestador');    
+
     this.debouncer
       .pipe(debounceTime(500))
       .subscribe( valor => {
@@ -40,7 +45,7 @@ export class AgregarEncuestaComponent implements OnInit {
       });
   }
 
-  open(content:any){
+  open(content:any){    
     this.limpiar_Encuesta();
     this.modalService.open(content);
   }
@@ -56,9 +61,9 @@ export class AgregarEncuestaComponent implements OnInit {
   }
 
   agregar(){
-
     this.validarEncuesta()
-    this.encuestas.encuestador = this.encuestas.id_encuestador;    
+    this.encuestas.encuestador = this.nombreUsuario;
+    this.encuestas.idEncuestador = this.idEncuestador;        
       this.encuestaService.Create_encuesta(this.encuestas).subscribe((res:any)=>{
         if (res.success==true) {
           this.alert.success_small(res.msg!)

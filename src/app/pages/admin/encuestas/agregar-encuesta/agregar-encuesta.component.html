@@ -35,7 +35,7 @@
         </div>                
         <div class="col">
             <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Apeliddo del encuestado</mat-label>
+              <mat-label>Apellido del encuestado</mat-label>
               <input
                 type="text"
                 maxlength="50"
@@ -60,17 +60,7 @@
                     [(ngModel)]="encuestas.animal"
                   />
                 </mat-form-field>
-              </div>              
-              <div class="col">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Encuestador</mat-label>
-                  <mat-select name="encuestas.id_encuestador" [(ngModel)]="encuestas.id_encuestador">
-                    <mat-option *ngFor="let encuestador of list_encuestadores" value="{{ encuestador.id }}">
-                      {{ encuestador.nombre }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+              </div>                                                       
         </div>                 
       </form>
     </div>
