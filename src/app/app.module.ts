@@ -27,15 +27,14 @@ import { UsuariosService } from './pages/services/usuarios.service';
 import { RolesService } from './pages/services/roles.service';
 import { RolesModule } from './pages/admin/roles/roles.module';
 import { PermisosModule } from './pages/admin/permisos/permisos.module';
-
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    
+    FooterComponent,     
   ],
   imports: [
     BrowserModule,
@@ -51,6 +50,7 @@ import { PermisosModule } from './pages/admin/permisos/permisos.module';
     NgbModule,
     RolesModule,
     PermisosModule,
+    FileUploadModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorsTokenService, multi: true },

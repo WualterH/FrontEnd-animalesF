@@ -6,6 +6,7 @@ import { EncuestaService } from 'src/app/pages/services/encuestas.service';
 import { debounceTime } from 'rxjs/operators';
 import { Encuestador } from 'src/app/shared/models/encuestador.interface';
 import { Encuesta } from 'src/app/shared/models/encuestas.interface';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-agregar-encuesta',
@@ -15,7 +16,7 @@ import { Encuesta } from 'src/app/shared/models/encuestas.interface';
 export class AgregarEncuestaComponent implements OnInit {
 
   @Output() onDebounce: EventEmitter<boolean> = new EventEmitter();  
-  debouncer: Subject<boolean> = new Subject();  
+  debouncer: Subject<boolean> = new Subject();    
 
   encuestas:Encuesta={
     nombre:"",
@@ -34,6 +35,11 @@ export class AgregarEncuestaComponent implements OnInit {
     private encuestaService: EncuestaService,
   ) { }
 
+  imageUrlApi = 'http://localhost:4000/animalesF/upload';
+  public uploader:FileUploader=new FileUploader({
+    url:this.imageUrlApi, itemAlias:'video'
+  });
+
   ngOnInit(): void {
     this.nombreUsuario = localStorage.getItem('nombreUsuario');    
     this.idEncuestador = localStorage.getItem('idEncuestador');    
@@ -43,6 +49,13 @@ export class AgregarEncuestaComponent implements OnInit {
       .subscribe( valor => {
         this.onDebounce.emit( valor );
       });
+
+      this.uploader.onAfterAddingFile = (file:any)=> { 
+        file.withCredentials = false; };
+
+      this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+        console.log("uploaded successfully",  status);
+      }
   }
 
   open(content:any){    
@@ -64,7 +77,7 @@ export class AgregarEncuestaComponent implements OnInit {
     this.validarEncuesta()
     this.encuestas.encuestador = this.nombreUsuario;
     this.encuestas.idEncuestador = this.idEncuestador;        
-      this.encuestaService.Create_encuesta(this.encuestas).subscribe((res:any)=>{
+      this.encuestaService.Create_encuesta(this.encuestas).subscribe((res:any)=>{        
         if (res.success==true) {
           this.alert.success_small(res.msg!)
           this.modalService.dismissAll();

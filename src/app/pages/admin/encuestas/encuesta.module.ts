@@ -5,7 +5,7 @@ import { ListaEncuestaComponent } from './lista-encuesta/lista-encuesta.componen
 import { AgregarEncuestaComponent } from './agregar-encuesta/agregar-encuesta.component';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule } from '@angular/forms';
-
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     MaterialModule,
     FormsModule,
+    FileUploadModule,
   ]
 })
 export class EncuestaModule { }

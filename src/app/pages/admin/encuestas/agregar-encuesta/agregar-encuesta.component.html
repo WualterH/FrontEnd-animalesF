@@ -77,5 +77,20 @@
         Guardar
       </button>
     </div>
+
+    <h3> Subir imagen</h3>
+    <input type="file" name="video" ng2FileSelect (uploader)="uploader"/>
+
+    <div class="pogress">
+      <div class="progress-bar" role="progressbar" ></div>
+    </div>
+    <ul *ngFor="let item of uploader.queue">
+      <li>
+        {{item.file.name}}
+        <button type="button" (click)="item.upload()" class="btn btn-primary btn-xs">Upload</button>
+        <button type="button" (click)="item.remove()" class="btn btn-danger btn-xs">Remove</button>
+      </li>
+    </ul>
+
   </ng-template>
   
