@@ -5,7 +5,7 @@ import { AdminModule } from './pages/admin/admin.module';
 import { UsuariosModule } from './pages/admin/usuarios/usuarios.module';
 import { MaterialModule } from './material.module';
 import { SidebarModule } from './shared/components/sidebar/sidebar.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +28,9 @@ import { RolesService } from './pages/services/roles.service';
 import { RolesModule } from './pages/admin/roles/roles.module';
 import { PermisosModule } from './pages/admin/permisos/permisos.module';
 import { FileUploadModule } from 'ng2-file-upload';
+import { CommonModule } from '@angular/common';
+import { DialogModule } from './pages/admin/dialogs/dialog.module';
+import { EncuestaService } from './pages/services/encuestas.service';
 
 
 @NgModule({
@@ -37,6 +40,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     FooterComponent,     
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AdminModule,
     AppRoutingModule,
@@ -50,15 +54,17 @@ import { FileUploadModule } from 'ng2-file-upload';
     NgbModule,
     RolesModule,
     PermisosModule,
-    FileUploadModule
+    FileUploadModule,
+    DialogModule,
+    FormsModule    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorsTokenService, multi: true },
       AuthService,
       AlertHelper,
       UsuariosService,
-      RolesService
-
+      RolesService,
+      EncuestaService
   ],
   bootstrap: [AppComponent]
 })

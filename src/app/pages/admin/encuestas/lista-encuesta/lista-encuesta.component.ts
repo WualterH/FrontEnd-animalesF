@@ -26,6 +26,7 @@ export class ListaEncuestaComponent implements OnInit {
     apellido:"",
     animal:"",
     encuestador:"",    
+    video:[],
     idEncuestador:0,    
   };
 

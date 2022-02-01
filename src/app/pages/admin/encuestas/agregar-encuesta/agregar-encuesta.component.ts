@@ -4,9 +4,10 @@ import { Subject } from 'rxjs';
 import { AlertHelper } from 'src/app/shared/components/helpers/alert.helpers';
 import { EncuestaService } from 'src/app/pages/services/encuestas.service';
 import { debounceTime } from 'rxjs/operators';
-import { Encuestador } from 'src/app/shared/models/encuestador.interface';
 import { Encuesta } from 'src/app/shared/models/encuestas.interface';
 import { FileUploader } from 'ng2-file-upload';
+import { DialogRespaldosComponent } from '../../dialogs/dialog-respaldos/dialog-respaldos.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-agregar-encuesta',
@@ -17,12 +18,14 @@ export class AgregarEncuestaComponent implements OnInit {
 
   @Output() onDebounce: EventEmitter<boolean> = new EventEmitter();  
   debouncer: Subject<boolean> = new Subject();    
+  nameVideo: string[] = [];
 
   encuestas:Encuesta={
     nombre:"",
     apellido:"",
     animal: "",
     encuestador: "",
+    video: [],
     idEncuestador:0     
   }
 
@@ -33,6 +36,7 @@ export class AgregarEncuestaComponent implements OnInit {
     private modalService: NgbModal,
     private alert: AlertHelper,
     private encuestaService: EncuestaService,
+    private dialog: MatDialog
   ) { }
 
   imageUrlApi = 'http://localhost:4000/animalesF/upload';
@@ -75,19 +79,29 @@ export class AgregarEncuestaComponent implements OnInit {
 
   agregar(){
     this.validarEncuesta()
+    const dialogRef = this.dialog.open(DialogRespaldosComponent, {
+
+      data: { url: 'encuesta/upload' }
+    });   
+    dialogRef.afterClosed().subscribe(result => { 
+    this.nameVideo = result;
+    this.encuestas.video = [];
     this.encuestas.encuestador = this.nombreUsuario;
     this.encuestas.idEncuestador = this.idEncuestador;        
-      this.encuestaService.Create_encuesta(this.encuestas).subscribe((res:any)=>{        
-        if (res.success==true) {
-          this.alert.success_small(res.msg!)
-          this.modalService.dismissAll();
+    for (const video of this.nameVideo){
+      this.encuestas.video.push(video);
+    }
+      this.encuestaService.Create_encuesta(this.encuestas).subscribe((res:any)=>{         
+        if (res.succes==true) {          
+          this.alert.success_small(res.msg!)          
+          this.modalService.dismissAll();          
           this.limpiar_Encuesta();
-          this.debouncer.next( true );
+          this.debouncer.next( true );          
         }else{
           this.alert.error_small(res.msg!)
         }
     })
-    
+    });
   }
 
 }

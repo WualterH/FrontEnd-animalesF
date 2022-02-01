@@ -13,6 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 import { AgregarEncuestadorComponent } from './encuestador/agregar-encuestador/agregar-encuestador.component';
 import { ListaEncuestadorComponent } from './encuestador/lista-encuestador/lista-encuestador.component';
 import { MainEncuestadorComponent } from './encuestador/main-encuestador/main-encuestador.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [   
@@ -30,7 +32,8 @@ import { MainEncuestadorComponent } from './encuestador/main-encuestador/main-en
     MaterialModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    FileUploadModule,    
   ]
 })
 export class AdminModule { }

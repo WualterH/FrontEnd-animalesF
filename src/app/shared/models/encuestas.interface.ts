@@ -5,6 +5,7 @@ export interface Encuesta {
     apellido: string,
     animal: string,
     encuestador: string,
+    video: any[];
     idEncuestador:number      
     createdAt?:any,
     updatedAt?:any,      
