@@ -26,7 +26,7 @@ export class ListaEncuestaComponent implements OnInit {
     apellido:"",
     animal:"",
     encuestador:"",    
-    video:[],
+    url:"",
     idEncuestador:0,    
   };
 
@@ -64,9 +64,10 @@ export class ListaEncuestaComponent implements OnInit {
 
 open(content:any,id:number) {
   this.update_encuestas.id=id
-  this.encuestaService.Obtener_encuesta(id).subscribe(res =>{    
-    this.update_encuestas.nombre=res.data.nombre;
-    this.update_encuestas.apellido=res.data.apellido;
+  this.encuestaService.Obtener_encuesta(id).subscribe(res =>{
+    console.log("respuesta", res)    
+    this.update_encuestas.nombre=res.data.encuestaPersona.personas.nombre;
+    this.update_encuestas.apellido=res.data.encuestaPersona.personas.apellido;
     this.update_encuestas.animal=res.data.animal;
     this.update_encuestas.encuestador=res.data.encuestador;    
   })
@@ -111,6 +112,15 @@ Eliminar_Encuesta(content:any,id:number){
           this.alert.error_small(res.msg!)
         }
   })    
+}
+
+Ver_video(url:any){
+  // console.log("la url",url)
+  // setTimeout(() => {
+  //   this.dialog.open(DialogShow, {
+  //     data: { archivos: url, servicio: 'hostal-egreso' },
+  //   });
+  // }, 1000);    
 }
 
 }

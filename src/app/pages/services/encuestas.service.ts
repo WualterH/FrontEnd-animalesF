@@ -51,7 +51,7 @@ export class EncuestaService {
     );
   }
 
-  Create_encuesta(encuesta:Encuesta): Observable<RequestResponse> {                   
+  Create_encuesta(encuesta:Encuesta): Observable<RequestResponse> {                       
     return this.http
     .post<RequestResponse >(`${environment.API}/animalesF/encuesta/crear`,encuesta)
     .pipe(
@@ -64,7 +64,7 @@ export class EncuestaService {
 
   Obtener_encuesta(id:number): Observable<RequestResponse> {
     return this.http
-    .get<RequestResponse >(`${environment.API}/animalesF/encuesta/${id}`)
+    .get<RequestResponse >(`${environment.API}/animalesF/encuesta/buscar/${id}`)
     .pipe(
       map((res:RequestResponse) =>{
         return res;

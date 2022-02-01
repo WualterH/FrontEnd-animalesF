@@ -18,14 +18,14 @@ export class AgregarEncuestaComponent implements OnInit {
 
   @Output() onDebounce: EventEmitter<boolean> = new EventEmitter();  
   debouncer: Subject<boolean> = new Subject();    
-  nameVideo: string[] = [];
-
+  
+  
   encuestas:Encuesta={
     nombre:"",
     apellido:"",
     animal: "",
     encuestador: "",
-    video: [],
+    url: "",
     idEncuestador:0     
   }
 
@@ -83,14 +83,10 @@ export class AgregarEncuestaComponent implements OnInit {
 
       data: { url: 'encuesta/upload' }
     });   
-    dialogRef.afterClosed().subscribe(result => { 
-    this.nameVideo = result;
-    this.encuestas.video = [];
+    dialogRef.afterClosed().subscribe(result => {     
+    this.encuestas.url = result;    
     this.encuestas.encuestador = this.nombreUsuario;
-    this.encuestas.idEncuestador = this.idEncuestador;        
-    for (const video of this.nameVideo){
-      this.encuestas.video.push(video);
-    }
+    this.encuestas.idEncuestador = this.idEncuestador;            
       this.encuestaService.Create_encuesta(this.encuestas).subscribe((res:any)=>{         
         if (res.succes==true) {          
           this.alert.success_small(res.msg!)          

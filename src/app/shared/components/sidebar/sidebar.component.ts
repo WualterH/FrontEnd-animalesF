@@ -17,8 +17,7 @@ export class SidebarComponent implements OnInit {
 
   //asignar rutas de menu de administrador
 
-  typesOfOptionsAdmin: MenuInterface[] = [
-    {nombreItem:'Trabajadores',icon:'person',route:"main-trabajadores"},
+  typesOfOptionsAdmin: MenuInterface[] = [    
     {nombreItem:'Control de Usuarios',icon:'directions_walk',route:"main-usuarios"},
   ];
 
@@ -29,16 +28,12 @@ export class SidebarComponent implements OnInit {
     {nombreItem:'Mis liquidaciones',icon:'menu',route:""},
     {nombreItem:'Informacion Adicional',icon:'menu',route:""}
   ];
-
-  //asignar rutas de menu de trabajadores
-  //hay que generar un submodulo dentro de la carpeta page para generar vistas de
-  //trabajador
+  
 
   typesOfOptionsMantenedores: MenuInterface[] = [
     {nombreItem:'Roles',icon:'group_add',route:"main-roles"},
     {nombreItem:'Permisos',icon:'compare_arrows',route:"main-permisos"},
-    {nombreItem: 'Encuesta', icon:'compare_arrows', route: "main-encuestas"},
-    {nombreItem: 'Encuestador', icon:'compare_arrows', route: "main-encuestador"}
+    {nombreItem: 'Encuesta', icon:'compare_arrows', route: "main-encuestas"},    
   ];
 
 
