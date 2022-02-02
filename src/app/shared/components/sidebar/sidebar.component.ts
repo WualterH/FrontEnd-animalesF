@@ -48,8 +48,7 @@ export class SidebarComponent implements OnInit {
     ))
   }
 
-  RedirectFunction(ToRoute:MenuInterface):void{
-    console.log("Ruta de redireccion",ToRoute.route)
+  RedirectFunction(ToRoute:MenuInterface):void{    
     this.router.navigate([`admin/${ToRoute.route}`])
     return
   }

@@ -26,8 +26,7 @@ export class MainRolesComponent implements OnInit {
     console.log('Actualizando tabla roles')
     
     this.roles_services.GetAll_roles().subscribe((res: Roles[]) => {
-      this.roles=res
-      console.log(this.roles)
+      this.roles=res      
 
     })
 

@@ -12,19 +12,16 @@ h1{
     flex: 1;
     margin-right: 20px;
   }
+  
 
-  .animated-digit {
-    display: inline-flex;
-    height: 100px;
-    width: 100px;
-    color: rgb(12, 1, 1);
-    background: rgba(0, 0, 0, 0.2) 20%;
-    text-align: center;
-    padding: 24px;
-    border-radius: 60px;
-    border: 2px solid #77227a;
-    margin-top:1em;
-    justify-content:center;
-    align-items: center;
-    font-size:32pt;
-  }
+  .responsive {
+    width: 100% !important;
+    overflow-x: auto !important;
+}
+
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+/* your colors */
+.legend .superawesome { background-color: rgba(54, 162, 235, 0.2) }
+.legend .awesome { background-color: rgba(255, 159, 64, 0.2); }

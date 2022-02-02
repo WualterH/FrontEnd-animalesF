@@ -37,8 +37,7 @@ export class MainUsuariosComponent implements OnInit {
   
 
     this.user_services.GetAll_usuario().subscribe((res:GetAllUsuarios[])=>{
-      this.Usuarios_list_main=res;
-      console.log(res)
+      this.Usuarios_list_main=res;      
 
     })
   }

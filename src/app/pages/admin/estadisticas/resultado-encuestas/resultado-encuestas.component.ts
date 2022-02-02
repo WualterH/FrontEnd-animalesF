@@ -4,6 +4,7 @@ import { Encuesta } from 'src/app/shared/models/encuestas.interface';
 //import { Chart } from 'chart.js';
 import html2canvas from 'html2canvas'
 import Chart from 'chart.js/auto'
+import { element } from 'protractor';
 
 
 @Component({
@@ -13,14 +14,15 @@ import Chart from 'chart.js/auto'
 })
 export class ResultadoEncuestasComponent implements OnInit {
 
-  encuestas: Encuesta[] = [];
-  encuestador: Encuesta[] = [];    
+  encuestas: any[] = [];
+  datos: any[] = [];    
   idEncuestador: any;
   Utils: any;
   chart: any;
   fecha: Date[] = [];
   nombreUsuario: any;
-  animales: any[] = [];
+  total: any;
+  animalf: any;
   
   
   
@@ -40,102 +42,51 @@ export class ResultadoEncuestasComponent implements OnInit {
     
     this.nombreUsuario = localStorage.getItem('nombreUsuario');
     this.idEncuestador = localStorage.getItem('idEncuestador');                      
-    this.encuestaServide.GetAll_encuestaPorId(this.idEncuestador).subscribe(
-      (res) => {         
+    this.encuestaServide.GetAll_animal(this.idEncuestador).subscribe(
+      (res) => {                 
         this.encuestas = res.data;
-        this.contEncuesta = res.data.length;
-        this.encuestas.map((element) => {
-          if(element.animal=="PERRO"){
-            this.favorito = this.favorito + 1;            
-          }
-        })
-        this.animales.push({animal:this.favorito});        
-        // console.log("animales", this.animales);
-        // console.log("perro", this.favorito);              
-      });       
-      //this.totalEncuestas();
-      this.encuestasPorAnimal();
+        this.encuestas = Array.from(Object.values(res.data));                
+        this.total = this.encuestas[0];
+        this.animalf = this.encuestas[1];
+        this.datos.push(this.encuestas)        
+
+        var data = {
+          labels: [
+            'Total Encuestas',
+            'Perro',    
+          ],
+          datasets: [      
+          {
+            label: 'Encuestas',        
+            //data: [20, 48],
+             data: [this.total, this.animalf],
+            //data: this.encuestas,
+            fill: true,
+            backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+            borderColor: ['rgb(54, 162, 235)', 'rgb(255, 159, 64)',],
+            pointBackgroundColor: 'rgb(54, 162, 235)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(54, 162, 235)'
+          }]
+        };    
+      //   if (this.cont != 0) {
+      //     this.chart.destroy();
+      //   }
+        this._cdref.detectChanges()
+        this.chart = new Chart(this.chartRef1.nativeElement, {
+          type: 'bar',
+            data: data,
+            options: {                                  
+            }
+          
+        });
+      });             
+        
+      
     }    
 
-  actualizarTabla(event:boolean){
-    this.encuestaServide.GetAll_encuestaPorId(this.idEncuestador).subscribe(res=>{          
-      this.encuestas=res.data
-    })
-  }
-  
 
  
-
-  totalEncuestas() {    
-  //   if (this.cont != 0) {
-  //     this.chart.destroy();
-  //   }
-    this._cdref.detectChanges()
-    this.chart = new Chart(this.chartRef.nativeElement, {
-      type: 'bar',
-      data: {        
-        labels: this.fecha,
-        datasets: [
-          {
-            label: 'Ingresos',
-            backgroundColor: ['#f2829b'],            
-            data: [65, 59, 80, 81, 56, 55, 40],            
-          }
-        ]
-      },
-      
-    });
-  }
-  encuestasPorAnimal() {    
-    const data = {
-      //labels: this.animales,
-      labels: [
-        'Perro',
-        'Gato',
-        'Caballo',
-        'Conejo',
-        'Loro',
-        'Hasmter',
-        'Tigre'
-      ],
-      datasets: [
-      //   {
-      //   label: 'Perro',
-      //   data: [65, 59, 90, 81, 56, 55, 40],
-      //   fill: true,
-      //   backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      //   borderColor: 'rgb(255, 99, 132)',
-      //   pointBackgroundColor: 'rgb(255, 99, 132)',
-      //   pointBorderColor: '#fff',
-      //   pointHoverBackgroundColor: '#fff',
-      //   pointHoverBorderColor: 'rgb(255, 99, 132)'
-      // }, 
-      {
-        label: 'Animales',
-        //data: this.animales,
-        data: [this.favorito, 48, 40, 19, 96, 27, 100],
-        fill: true,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgb(54, 162, 235)',
-        pointBackgroundColor: 'rgb(54, 162, 235)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgb(54, 162, 235)'
-      }]
-    };    
-  //   if (this.cont != 0) {
-  //     this.chart.destroy();
-  //   }
-    this._cdref.detectChanges()
-    this.chart = new Chart(this.chartRef1.nativeElement, {
-      type: 'radar',
-        data: data,
-        options: {
-          //responsive: false,                
-          
-        }
-      
-    });
-  }
 
 }

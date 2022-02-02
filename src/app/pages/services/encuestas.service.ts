@@ -51,6 +51,17 @@ export class EncuestaService {
     );
   }
 
+  GetAll_animal(id:number): Observable<RequestResponseGetAllEncuesta> {
+    return this.http
+    .get<RequestResponseGetAllEncuesta >(`${environment.API}/animalesF/encuesta/animal/${id}`)
+    .pipe(
+      map((res:RequestResponseGetAllEncuesta) =>{          
+        return res;
+      }),
+      catchError((err)=> this.handlerError(err))
+    );
+  }
+
   Create_encuesta(encuesta:Encuesta): Observable<RequestResponse> {                       
     return this.http
     .post<RequestResponse >(`${environment.API}/animalesF/encuesta/crear`,encuesta)
