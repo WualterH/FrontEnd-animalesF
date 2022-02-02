@@ -8,6 +8,8 @@ import { EncuestaService } from 'src/app/pages/services/encuestas.service';
 import { AlertHelper } from 'src/app/shared/components/helpers/alert.helpers';
 import { Encuesta } from 'src/app/shared/models/encuestas.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDownloadsComponent } from '../../dialogs/dialog-downloads/dialog-downloads.component';
 
 @Component({
   selector: 'app-lista-encuesta',
@@ -39,7 +41,8 @@ export class ListaEncuestaComponent implements OnInit {
   constructor(
     private alert:AlertHelper,
     private modalService: NgbModal,
-    private encuestaService: EncuestaService,     
+    private encuestaService: EncuestaService,
+    private dialog: MatDialog,     
   ) { }
 
   ngOnInit(): void {
@@ -64,8 +67,7 @@ export class ListaEncuestaComponent implements OnInit {
 
 open(content:any,id:number) {
   this.update_encuestas.id=id
-  this.encuestaService.Obtener_encuesta(id).subscribe(res =>{
-    console.log("respuesta", res)    
+  this.encuestaService.Obtener_encuesta(id).subscribe(res =>{      
     this.update_encuestas.nombre=res.data.encuestaPersona.personas.nombre;
     this.update_encuestas.apellido=res.data.encuestaPersona.personas.apellido;
     this.update_encuestas.animal=res.data.animal;
@@ -114,13 +116,12 @@ Eliminar_Encuesta(content:any,id:number){
   })    
 }
 
-Ver_video(url:any){
-  // console.log("la url",url)
-  // setTimeout(() => {
-  //   this.dialog.open(DialogShow, {
-  //     data: { archivos: url, servicio: 'hostal-egreso' },
-  //   });
-  // }, 1000);    
-}
+Ver_video(url:any){    
+  setTimeout(() => {
+    this.dialog.open(DialogDownloadsComponent, {
+      data: { archivos: url, servicio: 'video-encuesta' },
+    });
+  }, 1000);    
+ }
 
 }

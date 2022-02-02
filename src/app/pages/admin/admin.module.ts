@@ -15,6 +15,7 @@ import { ListaEncuestadorComponent } from './encuestador/lista-encuestador/lista
 import { MainEncuestadorComponent } from './encuestador/main-encuestador/main-encuestador.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BrowserModule } from '@angular/platform-browser';
+import { ResultadoEncuestasComponent } from './estadisticas/resultado-encuestas/resultado-encuestas.component';
 
 @NgModule({
   declarations: [   
@@ -23,7 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
     AgregarEncuestaComponent, 
     AgregarEncuestadorComponent, 
     ListaEncuestadorComponent, 
-    MainEncuestadorComponent],
+    MainEncuestadorComponent, ResultadoEncuestasComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

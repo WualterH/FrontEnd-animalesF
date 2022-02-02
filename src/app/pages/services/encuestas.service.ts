@@ -106,6 +106,27 @@ export class EncuestaService {
     return throwError(errorMessage);
   }
 
+  buscarImagen(url: string) {       
+    const extencion = url.split('.');
+    const extend = extencion[1];    
+    return this.http
+      .get(`${environment.API}/animalesF/encuesta/download/${url}`, {
+        responseType: 'blob',
+      })      
+  }
+
+  ingresoGetFiles(fileName: string) {    
+    const extencion = fileName.split('.');
+    const extend = extencion[1];    
+    return this.http
+      .get(`${environment.API}/animalesF/encuesta/download/${fileName}`, {
+        responseType: 'blob',
+      })
+      .subscribe((res) => {                
+        window.open(window.URL.createObjectURL(res));
+      });
+  }
+
 }
 
 

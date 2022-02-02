@@ -9,6 +9,7 @@ import { MainPermisosComponent } from './permisos/main-permisos/main-permisos.co
 import { PermisosModule } from './permisos/permisos.module';
 import { MainEncuestaComponent } from './encuestas/main-encuesta/main-encuesta.component';
 import { MainEncuestadorComponent } from './encuestador/main-encuestador/main-encuestador.component';
+import { ResultadoEncuestasComponent } from './estadisticas/resultado-encuestas/resultado-encuestas.component';
 
 const routes: Routes = 
 [
@@ -17,7 +18,8 @@ const routes: Routes =
   { path: 'main-roles', component: MainRolesComponent },
   { path: 'main-permisos', component: MainPermisosComponent },
   { path: 'main-encuestas', component: MainEncuestaComponent},
-  { path: 'main-encuestador', component: MainEncuestadorComponent}
+  { path: 'main-encuestador', component: MainEncuestadorComponent},
+  {path: 'main-estadisticas', component: ResultadoEncuestasComponent}
 ];
 
 

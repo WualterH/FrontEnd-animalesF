@@ -20,7 +20,7 @@ export class AuthService {
   
   private loggedIn = new BehaviorSubject<boolean>(false);
   private role = new BehaviorSubject<Role>("NULL");
-  public NombreUsuario:string="Administrador"
+  public NombreUsuario:string="Administrador de encuestas"
 
   constructor(private http:HttpClient,private router: Router,private alert:AlertHelper) { 
     this.checkToken();

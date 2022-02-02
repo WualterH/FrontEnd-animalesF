@@ -102,16 +102,14 @@ export class ListaUsuariosComponent implements OnInit {
 
   actualizar_usuario(){
     const validacion=this.validar_Actualizacion();
-    if(!validacion){
-      console.log("retornando");
+    if(!validacion){      
       return 
     }
 
-    this.user_services.Actualizar_usuario(this.usuario_update).subscribe(res=>{
-      console.log(res)
+    this.user_services.Actualizar_usuario(this.usuario_update).subscribe(res=>{      
     })
 
-    console.log(this.usuario_update);
+    
 
   }
 

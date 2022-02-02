@@ -31,6 +31,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from './pages/admin/dialogs/dialog.module';
 import { EncuestaService } from './pages/services/encuestas.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { EncuestaService } from './pages/services/encuestas.service';
     PermisosModule,
     FileUploadModule,
     DialogModule,
-    FormsModule    
+    FormsModule,    
+    MatSnackBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorsTokenService, multi: true },
